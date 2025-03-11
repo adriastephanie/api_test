@@ -10,19 +10,65 @@ Allure Reports para geração de relatórios detalhados
 
 ## Estrutura
 
-- BaseTest.java: Classe base com configurações comuns e setup do ambiente
-- ExemploTest.java:  teste com cenario do endpoint
+Princípios aplicados na arquitetura
+
+Separação de Responsabilidades:
+
+clients: Encapsula as chamadas da API
+
+models: Define os objetos de domínio
+
+assertions: Contém validações específicas
+
+specs: Reutiliza especificações comuns
+
+config: Centraliza as configurações
+
+Padrão Page Object para APIs:
+
+Os clientes (como JokeClient) funcionam como "page objects" para APIs
+Abstrai os detalhes de implementação das chamadas HTTP
+
+
+Configuração por Ambiente:
+
+Sistema de carregamento dinâmico de propriedades
+Facilita testes em múltiplos ambientes (dev, qa, prod)
+
+
+Testes Organizados por Funcionalidade:
+
+Pacotes separados para cada endpoint/recurso
+Facilita encontrar e manter testes específicos
+
+
+Relatórios Detalhados com Allure:
+
+Anotações @Step para documentar cada ação
+Anexos para incluir respostas no relatório
+
+
+Assertions Expressivas e Reutilizáveis:
+
+Validações personalizadas que comunicam claramente o propósito
+
+Modelo de Dados Claro:
+
+POJOs com anotações Lombok reduzem código boilerplate
+Mapeamento automático das respostas JSON
 
 ## Comandos 
 
 
 Rodar o teste: 
 
-``` mvn clean test ```
+``` mvn clean test -Denv=qa ```
+
+``` mvn clean test -Denv=dev ```
 
 Gerar o relatório:
 
-``` mvn allure:report ``
+``` mvn allure:report ```
 
 Rodar servidor do Allure: 
 
@@ -38,6 +84,7 @@ when(): Ação a ser executada (GET, POST, PUT, DELETE, etc.)
 then(): Validações e verificações dos resultados
 
 ### JUnit 5
+
 JUnit 5 é um framework de teste que oferece:
 
 @Test: Marca um método como um teste
